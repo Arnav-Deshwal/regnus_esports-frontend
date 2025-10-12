@@ -1,5 +1,5 @@
 // RegnusHomeView.jsx
-import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 // Dummy data for demonstration. In a real app, this would come from an API call
 const featuredContent = [
@@ -27,6 +27,8 @@ const featuredContent = [
 ];
 
 const RegnusHomeView = () => {
+
+  const navigate = useNavigate();
   // Base container for the content, using the dark background
   return (
     <div className="bg-[#0B090A] text-white">
@@ -52,12 +54,12 @@ const RegnusHomeView = () => {
           </p>
           
           {/* Dynamic Action Button */}
-          <a 
-            href="/register" // Use relative path for routing
+          <button
+            onClick={() => navigate("/login")} // Use relative path for routing
             className="mt-8 inline-block bg-[#E5383B] hover:bg-[#A4161A] transition duration-300 text-white font-bold py-3 px-12 text-lg uppercase rounded-lg shadow-xl transform hover:scale-105"
           >
             Start The Ascent
-          </a>
+          </button>
         </div>
       </section>
 
