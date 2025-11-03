@@ -1,7 +1,7 @@
 import Header from "../components/header/Header"
 import Footer from "../components/footer/Footer"
-import Register from "../components/middle/Register"
-import Home from "../components/middle/Middle"
+import Register from "./middle/crewlogin/Register"
+import Home from "./middle/Home"
 
 import Login from "../components/login/Login"
 

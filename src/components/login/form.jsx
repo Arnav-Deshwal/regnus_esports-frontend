@@ -2,6 +2,7 @@
 import { User, Mail, ArrowLeft } from 'lucide-react';
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from 'react-router-dom';
 
 import Logo from "../../assets/logo.png"
 
@@ -148,6 +149,9 @@ const Form = () => {
     const loginFormRef = useRef(null);
     const otpFormRef = useRef(null);
     const [formHeight, setFormHeight] = useState('auto'); // State to set the height
+
+    const location = useLocation();
+    const type = location.state?.type; // "admin" or "team"
 
     // Determine the height of the wrapper container
     useEffect(() => {
@@ -332,7 +336,7 @@ const Form = () => {
                                 <form onSubmit={handleSubmit}>
                                     <div className="text-center pt-2 pb-3">
                                         <p className="inline-block px-4 text-[30px] font-bold text-[#D3D3D3]">
-                                            Login as Player
+                                            Login as {type}
                                         </p>
                                     </div>
 

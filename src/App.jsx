@@ -8,11 +8,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Routes without header/footer */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/crew_login" element={<Login />} />
 
         {/* Routes with layout (Header/Footer stays the same) */}
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/team" element={<Home />} />
           {/* You can add more nested routes here */}
         </Route>
       </Routes>

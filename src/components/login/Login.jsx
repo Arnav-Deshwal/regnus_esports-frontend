@@ -50,7 +50,7 @@ const Login = () => {
                     navigate('/login');
                     reject(error);
                 }
-            }, 3000); // The required 3-second delay
+            }, 1000); // The required 3-second delay
         });
     }
 
