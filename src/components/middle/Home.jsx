@@ -32,9 +32,14 @@ const RegnusHomeView = () => {
   return (
     <div className="bg-[#0B090A] text-white min-h-screen flex flex-col">
       {/* === 1. Video Section === */}
-      <section className="flex flex-col md:flex-row items-center justify-center w-full bg-black">
+      <section className="relative  flex flex-col md:flex-row items-center justify-center w-full bg-black">
+        {/* Floating Text */}
+        <h1 className="absolute top-6 w-full hidden sm:block text-center sm:text-4xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_10px_#E5383B] tracking-wide z-10">
+          Rise With <span className="text-[#E5383B]">Regnus</span>
+        </h1>
+
         <div className="w-full h-auto flex justify-center items-center">
-          <div className="w-full  overflow-hidden shadow-2xl ">
+          <div className="w-full overflow-hidden shadow-2xl">
             <video
               className="w-full h-full object-cover"
               src={video}
@@ -116,7 +121,6 @@ const RegnusHomeView = () => {
           Join Discord Community
         </a>
       </section>
-
     </div>
   );
 };
