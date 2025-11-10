@@ -1,6 +1,6 @@
 // RegnusHomeView.jsx
 import { useNavigate } from "react-router-dom";
-import video from "../../assets/video/A New Era Begins___RisewithRegnus__🏷️Ignore__esports _ _esportsindia _ _explorepage _ _explore(MP4).mp4";
+import video from "../../../assets/video/A New Era Begins___RisewithRegnus__🏷️Ignore__esports _ _esportsindia _ _explorepage _ _explore(MP4).mp4";
 
 const featuredContent = [
   {

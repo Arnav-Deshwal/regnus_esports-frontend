@@ -2,18 +2,20 @@
 import { User, Mail, ArrowLeft } from 'lucide-react';
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Logo from "../../assets/logo.png"
 
 // --- OTP Form Component ---
 // (Remains the same as before, no need to repeat its full code)
-const OtpForm = ({ onBackToLogin, isTransitioning, lastSubmittedEmail, setRef }) => {
+const OtpForm = ({ onBackToLogin, isTransitioning, lastSubmittedEmail, setRef, type }) => {
     // State to hold the 6-digit OTP
     const [otp, setOtp] = useState(new Array(6).fill(''));
     const [otpErrors, setOtpErrors] = useState({});
     const [isVerifying, setIsVerifying] = useState(false);
     const inputRefs = useRef([]);
+
+    const navigate= useNavigate()
 
     const handleOtpChange = (element, index) => {
         if (isNaN(element.value)) return false;
@@ -44,7 +46,8 @@ const OtpForm = ({ onBackToLogin, isTransitioning, lastSubmittedEmail, setRef })
         try {
             await new Promise(resolve => setTimeout(resolve, 1500));
             console.log('OTP Verification Attempt:', { otp: fullOtp });
-            alert('OTP Verified Successfully! (Simulated)');
+            navigate(`/crew_login/${type}`)
+            // alert('OTP Verified Successfully! (Simulated)');
         } catch (apiError) {
             setOtpErrors({ api: 'OTP verification failed. Please try again.' });
         } finally {
@@ -94,7 +97,7 @@ const OtpForm = ({ onBackToLogin, isTransitioning, lastSubmittedEmail, setRef })
             <button
                 type="submit"
                 disabled={isVerifying || isTransitioning}
-                className={`w-full py-3 mt-2 text-white font-semibold rounded-lg shadow-lg shadow-[#E5383B]/30 transition duration-300 transform 
+                className={`w-full cursor-pointer py-3 mt-2 text-white font-semibold rounded-lg shadow-lg shadow-[#E5383B]/30 transition duration-300 transform 
                         focus:outline-none focus:ring-4 focus:ring-[#E5383B]/50
                         ${isVerifying ? 'bg-gray-600 cursor-not-allowed animate-pulse' : 'bg-[#E5383B] hover:bg-red-700 hover:scale-[1.01]'}`
                 }
@@ -108,7 +111,7 @@ const OtpForm = ({ onBackToLogin, isTransitioning, lastSubmittedEmail, setRef })
                     type="button"
                     onClick={onBackToLogin}
                     disabled={isVerifying || isTransitioning}
-                    className="text-sm text-[#E5383B] hover:underline flex items-center justify-center mx-auto"
+                    className="text-sm text-[#E5383B] hover:underline flex items-center justify-center mx-auto cursor-pointer"
                 >
                     <ArrowLeft className="w-4 h-4 mr-1" />
                     Go back to Login
@@ -151,7 +154,7 @@ const Form = () => {
     const [formHeight, setFormHeight] = useState('auto'); // State to set the height
 
     const location = useLocation();
-    const type = location.state?.type; // "admin" or "team"
+    const type = location.state?.type; // "admin" or "player"
 
     // Determine the height of the wrapper container
     useEffect(() => {
@@ -406,7 +409,7 @@ const Form = () => {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting || isTransitioning}
-                                        className={`w-full py-3 mt-2 mb-6 text-white font-semibold rounded-lg shadow-lg shadow-[#E5383B]/30 transition duration-300 transform 
+                                        className={`w-full py-3 mt-2 mb-6 text-white font-semibold rounded-lg shadow-lg shadow-[#E5383B]/30 transition duration-300 transform cursor-pointer 
                     focus:outline-none focus:ring-4 focus:ring-[#E5383B]/50
                     ${isSubmitting
                                                 ? "bg-gray-600 cursor-not-allowed animate-pulse"
@@ -431,6 +434,7 @@ const Form = () => {
                                 <OtpForm
                                     onBackToLogin={handleBackToLogin}
                                     lastSubmittedEmail={lastSubmittedEmail}
+                                    type={type}
                                 />
                             </motion.div>
                         )}
